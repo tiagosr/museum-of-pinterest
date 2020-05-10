@@ -9,19 +9,43 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Spatial",
+"class": "Frame",
+"language": "GDScript",
+"path": "res://Frames/Frame.gd"
+}, {
+"base": "Spatial",
+"class": "Interactable",
+"language": "GDScript",
+"path": "res://Scripts/Interactable.gd"
+}, {
+"base": "RayCast",
+"class": "Interaction",
+"language": "GDScript",
+"path": "res://Scripts/Interaction.gd"
+}, {
 "base": "KinematicBody",
 "class": "MuseumVisitor",
 "language": "GDScript",
 "path": "res://MuseumVisitor.gd"
+}, {
+"base": "Object",
+"class": "RSSItem",
+"language": "GDScript",
+"path": "res://Scripts/RSSItem.gd"
 } ]
 _global_script_class_icons={
-"MuseumVisitor": ""
+"Frame": "",
+"Interactable": "",
+"Interaction": "",
+"MuseumVisitor": "",
+"RSSItem": ""
 }
 
 [application]
 
 config/name="MuseumOfPinterest"
-run/main_scene="res://RoomBase.tscn"
+run/main_scene="res://MuseumStart.tscn"
 config/icon="res://icon.png"
 
 [input]

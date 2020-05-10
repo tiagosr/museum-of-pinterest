@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://MuseumVisitor.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Interaction.gd" type="Script" id=2]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.75
@@ -12,11 +13,21 @@ mid_height = 1.25
 
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 1 )
+speed = 5.0
+acceleration = 2.0
+mouse_sensitivity = 0.15
 
 [node name="Head" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.776837, 0 )
 
 [node name="Camera" type="Camera" parent="Head"]
+
+[node name="InteractionRayCast" type="RayCast" parent="Head/Camera"]
+enabled = true
+cast_to = Vector3( 0, 0, -3 )
+collision_mask = 2
+collide_with_areas = true
+script = ExtResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )

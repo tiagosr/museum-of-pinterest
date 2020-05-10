@@ -1,11 +1,14 @@
 const express = require("express");
 const path = require("path");
 const http = require("http");
+const proxy = require("express-http-proxy");
 
 const port = process.env.PORT || 3001;
 
 const app = express();
 app.use(express.static(path.join(__dirname, "static")));
+app.use("/cache-rss", proxy("https://br.pinterest.com"));
+app.use("/cache-images", proxy("https://i.pinimg.com/"));
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "static/index.html"));
 });

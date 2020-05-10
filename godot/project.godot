@@ -48,6 +48,10 @@ config/name="MuseumOfPinterest"
 run/main_scene="res://MuseumStart.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Global="*res://Global.gd"
+
 [input]
 
 move_forward={

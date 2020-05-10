@@ -8,11 +8,14 @@ export var username:String = "tiagosr"
 export var boardname:String = "cacho-eira"
 
 func get_rss_url(uname, bname) -> String:
-	return "http://br.pinterest.com/"+uname+"/"+bname+".rss"
+	#return "http://br.pinterest.com/"+uname+"/"+bname+".rss"
+	return Global.rss_url +"/"+uname+"/"+bname+".rss"
 
 func rss_loaded(result, response_code, headers, body):
-	thread.start(self, "parse_rss", body)
-	
+	if OS.has_feature("JavaScript"):
+		parse_rss(body)
+	else:
+		thread.start(self, "parse_rss", body)
 	
 func parse_rss(body:PoolByteArray):
 	var parser:XMLParser = XMLParser.new()
@@ -32,6 +35,12 @@ func parse_rss(body:PoolByteArray):
 					print("node name: ", node_name)
 
 func _ready():
+	print(OS.get_cmdline_args())
+	print("---")
+	print(OS.get_executable_path())
+	print("---")
+	print(OS.get_name())
+	print("---")
 	$HTTPRequest.connect("request_completed", self, "rss_loaded")
 	$HTTPRequest.request(get_rss_url(username, boardname))
 

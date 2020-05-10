@@ -2,7 +2,8 @@ extends Spatial
 
 class_name Frame
 
-export var url:String = "http://i.pinimg.com/originals/bc/f1/09/bcf1098b58e8e28a4b06e6d9443404cd.jpg"
+#export var url:String = "http://i.pinimg.com/originals/bc/f1/09/bcf1098b58e8e28a4b06e6d9443404cd.jpg"
+export var url:String = "/originals/bc/f1/09/bcf1098b58e8e28a4b06e6d9443404cd.jpg"
 var thread:Thread = Thread.new()
 
 
@@ -12,7 +13,12 @@ func load_new_image(new_url:String):
 
 func image_loaded(result, response_code, headers, body):
 	if response_code != 404:
-		thread.start(self, "process_loaded_image", body)
+		if OS.has_feature("JavaScript"):
+			process_loaded_image(body)
+		else:
+			thread.start(self, "process_loaded_image", body)
+	else:
+		printerr("image not loaded!")
 
 func process_loaded_image(body:PoolByteArray):
 	var image_file:File = File.new()
@@ -33,4 +39,4 @@ func set_frame_image(new_texture:ImageTexture):
 	
 
 func _ready():
-	load_new_image(url)
+	load_new_image(Global.get_images_url() + url)

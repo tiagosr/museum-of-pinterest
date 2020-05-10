@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <title>Museum of Pinterest</title>
+    <style>
+        body { margin: 0; }
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+    <script src="js/three.js"></script>
+    <script type="module">
+        import * as THREE from './js/three.module.js';
+        import Stats from './js/libs/stats.module.js';
+        import { FirstPersonControls } from "./js/controls/FirstPersonControls.js";
+
+        var scene, clock, camera, controls, renderer, stats;
+
+        init();
+        animate();
+
+        function init() {
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            clock = new THREE.Clock();
+
+            scene = new THREE.Scene();
+
+            scene.background = new THREE.Color(0xfcf6f5);
+
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.body.appendChild(renderer.domElement);
+
+            controls = new FirstPersonControls(camera, renderer.domElement);
+
+            controls.movementSpeed = 500;
+            controls.lookSpeed = 0.1;
+
+            stats = new Stats();
+            document.body.appendChild(stats.dom);
+            window.addEventListener('resize', onWindowResize, false);
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            controls.handleResize();
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            render();
+            stats.update();
+        }
+
+        function render() {
+            var delta = clock.getDelta();
+            var time = clock.getElapsedTime() * 10;
+
+            controls.update(delta);
+            renderer.render(scene, camera);
+        }
+
+    </script>
+</body>
+</html>

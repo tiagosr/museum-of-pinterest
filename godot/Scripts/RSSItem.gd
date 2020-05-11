@@ -34,6 +34,10 @@ func parse_description(descr_text:String):
 	var to = descr_text.find("\"></a>")
 	imageUrl = descr_text.substr(from, to - from)
 	originalImageUrl = imageUrl.replace("/236x/", "/originals/")
+	var tofind:String = "pinimg.com"
+	var found:int = originalImageUrl.find(tofind)
+	if found > 0:
+		originalImageUrl = originalImageUrl.substr(found + tofind.length())
 
 func from_xml(parser:XMLParser):
 	while parser.read() == OK:

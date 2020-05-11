@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://MuseumVisitor.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Interaction.gd" type="Script" id=2]
+
+[sub_resource type="Environment" id=3]
+ambient_light_color = Color( 0.466667, 0.458824, 0.415686, 1 )
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.75
@@ -14,13 +17,13 @@ mid_height = 1.25
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 1 )
 speed = 5.0
-acceleration = 2.0
 mouse_sensitivity = 0.15
 
 [node name="Head" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.776837, 0 )
 
 [node name="Camera" type="Camera" parent="Head"]
+environment = SubResource( 3 )
 
 [node name="InteractionRayCast" type="RayCast" parent="Head/Camera"]
 enabled = true

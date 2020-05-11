@@ -6,6 +6,7 @@ class_name Frame
 export var url:String = "/originals/bc/f1/09/bcf1098b58e8e28a4b06e6d9443404cd.jpg"
 var thread:Thread = Thread.new()
 
+var rssitem:RSSItem = null
 
 func load_new_image(new_url:String):
 	$HTTPRequest.connect("request_completed", self, "image_loaded")
@@ -39,4 +40,7 @@ func set_frame_image(new_texture:ImageTexture):
 	
 
 func _ready():
-	load_new_image(Global.get_images_url() + url)
+	if rssitem:
+		load_new_image(Global.get_images_url() + rssitem.originalImageUrl)
+	else:
+		load_new_image(Global.get_images_url() + url)

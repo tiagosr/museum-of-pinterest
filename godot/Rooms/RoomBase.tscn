@@ -81,6 +81,8 @@ shape = SubResource( 4 )
 
 [node name="SpotLight" type="SpotLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.405285, 0.91419, 0, -0.91419, 0.405285, 0, 4.88921, -8.8601 )
+light_color = Color( 0.984314, 0.956863, 0.905882, 1 )
+shadow_enabled = true
 
 [node name="BasicFrame" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.73868 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.79727 )

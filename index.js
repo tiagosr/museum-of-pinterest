@@ -7,8 +7,22 @@ const port = process.env.PORT || 3001;
 
 const app = express();
 app.use(express.static(path.join(__dirname, "static")));
-app.use("/cache-rss", proxy("https://br.pinterest.com"));
-app.use("/cache-images", proxy("https://i.pinimg.com/"));
+app.use(
+  "/cache-rss",
+  proxy("https://br.pinterest.com/", {
+    filter: function (req, res) {
+      return req.method == "GET";
+    },
+  })
+);
+app.use(
+  "/cache-images",
+  proxy("https://i.pinimg.com/", {
+    filter: function (req, res) {
+      return req.method == "GET";
+    },
+  })
+);
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "static/index.html"));
 });

@@ -33,13 +33,19 @@ _global_script_classes=[ {
 "class": "RSSItem",
 "language": "GDScript",
 "path": "res://Scripts/RSSItem.gd"
+}, {
+"base": "Spatial",
+"class": "Room",
+"language": "GDScript",
+"path": "res://Scripts/Room.gd"
 } ]
 _global_script_class_icons={
 "Frame": "",
 "Interactable": "",
 "Interaction": "",
 "MuseumVisitor": "",
-"RSSItem": ""
+"RSSItem": "",
+"Room": ""
 }
 
 [application]

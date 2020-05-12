@@ -24,23 +24,21 @@ func parse_rss(body:PoolByteArray):
 		var node_name = parser.get_node_name()
 		var node_data = parser.get_node_data()
 		var node_type = parser.get_node_type()
-		match node_name:
-			"item":
-				var rssItem = RSSItem.new()
-				if not rssItem.from_xml(parser):
-					print("error parsing <item>")
-					return
-			_:
-				if node_type == XMLParser.NODE_ELEMENT:
-					print("node name: ", node_name)
+		if node_type == XMLParser.NODE_ELEMENT:
+			match node_name:
+				"item":
+					var rssItem = RSSItem.new()
+					if not rssItem.from_xml(parser):
+						printerr("error parsing <item>")
+						break
+					rssItems.append(rssItem)
+				_:
+					if node_type == XMLParser.NODE_ELEMENT:
+						print("node name: ", node_name)
+	if rssItems.size() != 0:
+		pass
 
 func _ready():
-	print(OS.get_cmdline_args())
-	print("---")
-	print(OS.get_executable_path())
-	print("---")
-	print(OS.get_name())
-	print("---")
 	$HTTPRequest.connect("request_completed", self, "rss_loaded")
 	$HTTPRequest.request(get_rss_url(username, boardname))
 

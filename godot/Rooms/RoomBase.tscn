@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Rooms/dark_ground.tres" type="Material" id=1]
 [ext_resource path="res://Frames/BasicFrame.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/Room.gd" type="Script" id=3]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -14,6 +15,7 @@ points = PoolVector3Array( -1, 1, 1, 1, 1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, 1,
 points = PoolVector3Array( -1, 1, 1, 1, 1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, -1, 1, 1, -1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, 1, 1, -1, -1, 1, -1, 1, 1, 1, -1, 1, 1, 1, -1, -1, -1, -1, -1, 1, -1, 1, -1, -1 )
 
 [node name="Room" type="Spatial"]
+script = ExtResource( 3 )
 
 [node name="Ground" type="StaticBody" parent="."]
 input_ray_pickable = false

@@ -16,6 +16,9 @@ app.use(
   "/cache-rss/:username/:board.rss",
   // simplest non-caching "GET" proxy for the RSS feeds coming from Pinterest
   (req, res, next) => {
+    if (req.method != "GET") {
+      return next();
+    }
     console.log(`request: ${req.params.username}/${req.params.board}`);
     https.get(`${orig_rss_addr}/${req.params.username}/${req.params.board}.rss`, (resp) => {
       resp.pipe(res);

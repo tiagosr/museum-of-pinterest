@@ -21,9 +21,9 @@ func parse_rss(body:PoolByteArray):
 	var parser:XMLParser = XMLParser.new()
 	parser.open_buffer(body)
 	while parser.read() == OK:
-		var node_name = parser.get_node_name()
-		var node_data = parser.get_node_data()
 		var node_type = parser.get_node_type()
+		var node_name = parser.get_node_name() if node_type != XMLParser.NODE_TEXT else ""
+		var node_data = parser.get_node_data() if node_type == XMLParser.NODE_TEXT else ""
 		if node_type == XMLParser.NODE_ELEMENT:
 			match node_name:
 				"item":

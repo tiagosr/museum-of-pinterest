@@ -41,7 +41,8 @@ func parse_description(descr_text:String):
 
 func from_xml(parser:XMLParser):
 	while parser.read() == OK:
-		var node_name = parser.get_node_name()
+		var node_type = parser.get_node_type()
+		var node_name = parser.get_node_name() if node_type != XMLParser.NODE_TEXT else ""
 		match node_name:
 			"title":
 				var ret = get_node_data(parser)

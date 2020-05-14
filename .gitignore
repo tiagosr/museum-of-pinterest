@@ -115,4 +115,4 @@ export_presets.cfg
 .mono/
 data_*/
 
-cache_images/
+cache-images/

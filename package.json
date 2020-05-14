@@ -25,6 +25,8 @@
   "homepage": "https://github.com/tiagosr/museum-of-pinterest#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "express-http-proxy": "^1.6.0"
+    "express-http-proxy": "^1.6.0",
+    "memory-cache": "^0.2.0",
+    "safe-memory-cache": "^2.0.0"
   }
 }

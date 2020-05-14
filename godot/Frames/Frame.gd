@@ -31,16 +31,20 @@ func process_loaded_image(body:PoolByteArray):
 	
 func set_frame_image(new_texture:ImageTexture):
 	print("setting frame image")
-	$MeshFrame.get_surface_material(0).albedo_texture = new_texture
+	var new_material:SpatialMaterial = $MeshFrame.get_surface_material(0).duplicate()
+	new_material.albedo_texture = new_texture
+	$MeshFrame.set_surface_material(0, new_material)
 	var ratio:float = new_texture.get_height() / new_texture.get_width()
 	if ratio > 1.0:
 		$MeshFrame.scale.y = $MeshFrame.scale.x * ratio
 	else:
 		$MeshFrame.scale.x = $MeshFrame.scale.y * new_texture.get_width() / new_texture.get_height()
-	
+
+func set_item(item:RSSItem) -> bool:
+	rssitem = item
+	load_new_image(Global.get_images_url() + rssitem.originalImageUrl)
+	return true
 
 func _ready():
-	if rssitem:
-		load_new_image(Global.get_images_url() + rssitem.originalImageUrl)
-	else:
-		load_new_image(Global.get_images_url() + url)
+	#load_new_image(Global.get_images_url() + url)
+	pass

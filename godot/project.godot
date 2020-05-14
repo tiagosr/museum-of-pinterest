@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Interaction.gd"
 }, {
+"base": "Spatial",
+"class": "Museum",
+"language": "GDScript",
+"path": "res://Museum.gd"
+}, {
 "base": "KinematicBody",
 "class": "MuseumVisitor",
 "language": "GDScript",
@@ -43,6 +48,7 @@ _global_script_class_icons={
 "Frame": "",
 "Interactable": "",
 "Interaction": "",
+"Museum": "",
 "MuseumVisitor": "",
 "RSSItem": "",
 "Room": ""

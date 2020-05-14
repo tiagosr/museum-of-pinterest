@@ -1,7 +1,11 @@
 extends Spatial
 
+class_name Museum
+
+export var available_rooms:Array = []
 var images:Array = []
 var rssItems:Array = []
+var rooms:Array = []
 var thread:Thread = Thread.new()
 
 export var username:String = "tiagosr"
@@ -17,7 +21,7 @@ func rss_loaded(result, response_code, headers, body):
 	else:
 		thread.start(self, "parse_rss", body)
 	
-func parse_rss(body:PoolByteArray):
+func parse_rss(body:PoolByteArray) -> void:
 	var parser:XMLParser = XMLParser.new()
 	parser.open_buffer(body)
 	while parser.read() == OK:
@@ -36,7 +40,15 @@ func parse_rss(body:PoolByteArray):
 					if node_type == XMLParser.NODE_ELEMENT:
 						print("node name: ", node_name)
 	if rssItems.size() != 0:
-		pass
+		make_and_assign_rooms(rssItems)
+
+func make_and_assign_rooms(rssItems:Array) -> void:
+	var current_room:Room = $Room
+	for rssItem in rssItems:
+		if not current_room:
+			pass
+		if not current_room.consume_rss_item(rssItem):
+			current_room = null
 
 func _ready():
 	$HTTPRequest.connect("request_completed", self, "rss_loaded")

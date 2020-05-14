@@ -81,10 +81,26 @@ material/0 = null
 transform = Transform( 0.1, 0, 0, 0, 4, 0, 0, 0, 10, 0, 0, 0 )
 shape = SubResource( 4 )
 
-[node name="SpotLight" type="SpotLight" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.405285, 0.91419, 0, -0.91419, 0.405285, 0, 4.88921, -8.8601 )
-light_color = Color( 0.984314, 0.956863, 0.905882, 1 )
+[node name="BasicFrame" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.83 )
+
+[node name="SpotLight" type="SpotLight" parent="BasicFrame"]
+transform = Transform( 1, 0, 0, 0, 0.405285, 0.91419, 0, -0.91419, 0.405285, 0, 4.88921, 0.969901 )
+light_color = Color( 0.952941, 0.941176, 0.768627, 1 )
 shadow_enabled = true
 
-[node name="BasicFrame" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.79727 )
+[node name="BasicFrame3" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -9.83 )
+
+[node name="SpotLight" type="SpotLight" parent="BasicFrame3"]
+transform = Transform( 1, 0, 0, 0, 0.405285, 0.91419, 0, -0.91419, 0.405285, 0, 4.88921, 0.969901 )
+light_color = Color( 0.952941, 0.941176, 0.768627, 1 )
+shadow_enabled = true
+
+[node name="BasicFrame2" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -9.83 )
+
+[node name="SpotLight" type="SpotLight" parent="BasicFrame2"]
+transform = Transform( 1, 0, 0, 0, 0.405285, 0.91419, 0, -0.91419, 0.405285, 0, 4.88921, 0.969901 )
+light_color = Color( 0.952941, 0.941176, 0.768627, 1 )
+shadow_enabled = true

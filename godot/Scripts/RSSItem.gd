@@ -10,6 +10,8 @@ var guid:String
 var imageUrl:String
 var originalImageUrl:String
 
+var imageDownloader:ImageDownloader = ImageDownloader.new()
+
 class RetVal:
 	var result:bool = false
 	var text:String
@@ -49,32 +51,25 @@ func from_xml(parser:XMLParser):
 				if !ret.result:
 					return false
 				title = ret.text
-				#print("title: ", title)
 			"link":
 				var ret = get_node_data(parser)
 				if !ret.result:
 					return false
 				link = ret.text
-				#print("link: ", link)
 			"description":
 				var ret = get_node_data(parser)
 				if !ret.result:
 					return false
-				#description = ret.text
-				#print("description: ", description)
 				parse_description(ret.text)
-				#print("imageUrl: ", originalImageUrl)
 			"pubDate":
 				var ret = get_node_data(parser)
 				if !ret.result:
 					return false
 				pubDate = ret.text
-				#print("pubDate: ", pubDate)
 			"guid":
 				var ret = get_node_data(parser)
 				if !ret.result:
 					return false
 				guid = ret.text
-				#print("guid: ", guid)
 			"item": # we're done here
 				return parser.get_node_type() == XMLParser.NODE_ELEMENT_END

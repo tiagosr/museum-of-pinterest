@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Frames/Frame.gd"
 }, {
+"base": "Object",
+"class": "ImageDownloader",
+"language": "GDScript",
+"path": "res://Scripts/ImageDownloader.gd"
+}, {
 "base": "Spatial",
 "class": "Interactable",
 "language": "GDScript",
@@ -46,6 +51,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Frame": "",
+"ImageDownloader": "",
 "Interactable": "",
 "Interaction": "",
 "Museum": "",

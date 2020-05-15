@@ -8,27 +8,8 @@ var thread:Thread = Thread.new()
 
 var rssitem:RSSItem = null
 
-func load_new_image(new_url:String):
-	$HTTPRequest.connect("request_completed", self, "image_loaded")
-	$HTTPRequest.request(new_url)
+var image_loader:ImageDownloader = ImageDownloader.new()
 
-func image_loaded(result, response_code, headers, body):
-	if response_code != 404:
-		if OS.has_feature("JavaScript"):
-			process_loaded_image(body)
-		else:
-			thread.start(self, "process_loaded_image", body)
-	else:
-		printerr("image not loaded!")
-
-func process_loaded_image(body:PoolByteArray):
-	var image_file:File = File.new()
-	var new_image:Image = Image.new()
-	if new_image.load_jpg_from_buffer(body) == OK:
-		var new_texture:ImageTexture = ImageTexture.new()
-		new_texture.create_from_image(new_image)
-		set_frame_image(new_texture)
-	
 func set_frame_image(new_texture:ImageTexture):
 	print("setting frame image")
 	var new_material:SpatialMaterial = $MeshFrame.get_surface_material(0).duplicate()
@@ -42,7 +23,8 @@ func set_frame_image(new_texture:ImageTexture):
 
 func set_item(item:RSSItem) -> bool:
 	rssitem = item
-	load_new_image(Global.get_images_url() + rssitem.originalImageUrl)
+	image_loader.connect("texture_loaded", self, "set_frame_image")
+	image_loader.load_new_image($HTTPRequest, Global.get_images_url() + rssitem.originalImageUrl)
 	return true
 
 func _ready():

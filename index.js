@@ -46,6 +46,9 @@ app.use(
         file.on("finish", function () {
           file.close();
         });
+      } else {
+        console.error(`${req.url} returned status code ${resp.statusCode}`);
+        res.statusCode = resp.statusCode
       }
       resp.pipe(res);
     })

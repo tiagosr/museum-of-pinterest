@@ -9,7 +9,7 @@ var rooms:Array = []
 var thread:Thread = Thread.new()
 
 export var username:String = "tiagosr"
-export var boardname:String = "motor-homely"
+export var boardname:String = "light-wave"
 
 func get_rss_url(uname, bname) -> String:
 	#return "http://br.pinterest.com/"+uname+"/"+bname+".rss"

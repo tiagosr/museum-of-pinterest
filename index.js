@@ -36,15 +36,18 @@ app.use(
     console.log(req.url);
     const filepath = path.join(__dirname, "cache-images", req.url);
     const filedir = path.dirname(filepath);
-    console.log(`creating path ${filedir}`);
-    fs.mkdirSync(filedir, { recursive:true })
-    let file = fs.createWriteStream(filepath);
     https.get(`${orig_img_addr}${req.url}`, (resp) => {
-      resp.pipe(file);
+      if (resp.statusCode == 200)
+      {
+        console.log(`writing cache file at ${filepath}`);
+        fs.mkdirSync(filedir, { recursive: true });
+        let file = fs.createWriteStream(filepath);
+        resp.pipe(file);
+        file.on("finish", function () {
+          file.close();
+        });
+      }
       resp.pipe(res);
-      file.on("finish", function() {
-        file.close();
-      });
     })
   }
 );

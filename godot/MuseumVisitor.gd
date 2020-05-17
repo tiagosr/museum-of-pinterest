@@ -17,23 +17,20 @@ var velocity:Vector3 = Vector3()
 
 var camera_pitch:float = 0
 
-var mouse_captured:bool = false
 func _ready():
 	set_process_input(true)
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	mouse_captured = true
+	if not OS.has_feature("JavaScript"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_cancel"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		mouse_captured = false
 
 func _input(event):
 	if event is InputEventMouseButton:
 		if (Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE) and event.pressed:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-			mouse_captured = true
-	elif event is InputEventMouseMotion and mouse_captured:
+	elif event is InputEventMouseMotion and Input.get_mouse_mode() != Input.MOUSE_MODE_VISIBLE:
 		head.rotate_y(deg2rad(-event.relative.x * mouse_sensitivity))
 		var x_delta:float = -event.relative.y * mouse_sensitivity
 		var new_camera_pitch:float = camera_pitch + x_delta

@@ -46,7 +46,7 @@ func make_and_assign_rooms(rssItems:Array) -> void:
 	var current_room:Room = $Room
 	for rssItem in rssItems:
 		if not current_room:
-			pass
+			break
 		if not current_room.consume_rss_item(rssItem):
 			current_room = null
 

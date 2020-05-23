@@ -43,12 +43,20 @@ func parse_rss(body:PoolByteArray) -> void:
 		make_and_assign_rooms(rssItems)
 
 func make_and_assign_rooms(rssItems:Array) -> void:
-	var current_room:Room = $Room
+	var current_room:Room = null
 	for rssItem in rssItems:
+		print("trying rssItem ", rssItem)
 		if not current_room:
-			break
+			current_room = get_node(available_rooms.pop_back())
 		if not current_room.consume_rss_item(rssItem):
-			current_room = null
+			current_room = get_node(available_rooms.pop_back())
+			if not current_room:
+				printerr("not enough rooms for the amount of items")
+				return
+			# retry with the new room
+			if not current_room.consume_rss_item(rssItem):
+				printerr("newly assigned room can't receive rssItem")
+				return
 
 func _ready():
 	$HTTPRequest.connect("request_completed", self, "rss_loaded")

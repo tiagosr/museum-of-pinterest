@@ -6,6 +6,9 @@ class_name Frame
 export var url:String = "/originals/bc/f1/09/bcf1098b58e8e28a4b06e6d9443404cd.jpg"
 var thread:Thread = Thread.new()
 
+var frameRatioMin:float = 0.3
+var frameRatioMax:float = 2.0
+
 var rssitem:RSSItem = null
 
 var image_loader:ImageDownloader = ImageDownloader.new()

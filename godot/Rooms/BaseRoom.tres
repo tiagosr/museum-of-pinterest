@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/RoomData.gd" type="Script" id=1]
+[ext_resource path="res://Rooms/RoomBase.tscn" type="PackedScene" id=2]
+
+[resource]
+script = ExtResource( 1 )
+roomScene = ExtResource( 2 )
+dimensions = Vector3( 10, 10, 5 )
+offset = Vector3( 0, 0, 0 )
+doors = [  ]

@@ -48,6 +48,11 @@ _global_script_classes=[ {
 "class": "Room",
 "language": "GDScript",
 "path": "res://Scripts/Room.gd"
+}, {
+"base": "Resource",
+"class": "RoomData",
+"language": "GDScript",
+"path": "res://Scripts/RoomData.gd"
 } ]
 _global_script_class_icons={
 "Frame": "",
@@ -57,7 +62,8 @@ _global_script_class_icons={
 "Museum": "",
 "MuseumVisitor": "",
 "RSSItem": "",
-"Room": ""
+"Room": "",
+"RoomData": ""
 }
 
 [application]

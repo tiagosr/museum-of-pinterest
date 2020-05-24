@@ -74,7 +74,7 @@ light_color = Color( 0.952941, 0.941176, 0.768627, 1 )
 shadow_enabled = true
 
 [node name="BasicFrame12" parent="." instance=ExtResource( 2 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.83, 0, 4.29683e-07 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.83, 0, -2 )
 
 [node name="SpotLight" type="SpotLight" parent="BasicFrame12"]
 transform = Transform( 1, 0, 0, 0, 0.405285, 0.91419, 0, -0.91419, 0.405285, 0, 4.88921, 0.969901 )
@@ -82,7 +82,7 @@ light_color = Color( 0.952941, 0.941176, 0.768627, 1 )
 shadow_enabled = true
 
 [node name="BasicFrame11" parent="." instance=ExtResource( 2 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.83, 0, -5 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.83, 0, -7 )
 
 [node name="SpotLight" type="SpotLight" parent="BasicFrame11"]
 transform = Transform( 1, 0, 0, 0, 0.405285, 0.91419, 0, -0.91419, 0.405285, 0, 4.88921, 0.969901 )
@@ -90,7 +90,7 @@ light_color = Color( 0.952941, 0.941176, 0.768627, 1 )
 shadow_enabled = true
 
 [node name="BasicFrame10" parent="." instance=ExtResource( 2 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.83, 0, 5 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.83, 0, 3 )
 
 [node name="SpotLight" type="SpotLight" parent="BasicFrame10"]
 transform = Transform( 1, 0, 0, 0, 0.405285, 0.91419, 0, -0.91419, 0.405285, 0, 4.88921, 0.969901 )
@@ -133,3 +133,6 @@ material = ExtResource( 4 )
 
 [node name="CSGBox" type="CSGBox" parent="CSGBox/CSGBox2"]
 transform = Transform( 0.20202, 0, 0, 0, 0.636364, 0, 0, 0, 0.10101, 0.707071, -0.254545, -1.0101 )
+
+[node name="CSGBox2" type="CSGBox" parent="CSGBox/CSGBox2"]
+transform = Transform( 0.202, 0, 0, 0, 0.636, 0, 0, 0, 0.202, -1.01, -0.255, 0.707 )

@@ -10,6 +10,8 @@ export var mouse_sensitivity:float = 0.3
 export var camera_pitch_lower_limit:float = -60.0
 export var camera_pitch_higher_limit:float = 90.0
 
+export var can_move:bool = true
+
 onready var head:Spatial = $Head
 onready var camera:Camera = $Head/Camera
 
@@ -40,6 +42,8 @@ func _input(event):
 		camera_pitch = new_camera_pitch
 
 func _physics_process(delta):
+	if not can_move:
+		return
 	var head_basis = head.get_global_transform().basis
 	var direction:Vector3 = Vector3()
 	if Input.is_action_pressed("move_forward"):

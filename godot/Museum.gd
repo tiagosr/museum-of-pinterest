@@ -2,7 +2,7 @@ extends Spatial
 
 class_name Museum
 
-export var available_rooms:Array = []
+export(Array, Resource) var available_rooms:Array = []
 var images:Array = []
 var rssItems:Array = []
 var rooms:Array = []
@@ -47,18 +47,28 @@ func make_and_assign_rooms(rssItems:Array) -> void:
 	for rssItem in rssItems:
 		print("trying rssItem ", rssItem)
 		if not current_room:
-			current_room = get_node(available_rooms.pop_back())
-		if not current_room.consume_rss_item(rssItem):
-			current_room = get_node(available_rooms.pop_back())
+			var next_room = available_rooms[rand_range(0, available_rooms.size())] as RoomData
+			current_room = next_room.roomScene.instance()
 			if not current_room:
-				printerr("not enough rooms for the amount of items")
-				return
+				printerr("room not instanced")
+				break
+			add_child(current_room)
+		if not current_room.consume_rss_item(rssItem):
+			var next_room = available_rooms[rand_range(0, available_rooms.size())] as RoomData
+			current_room = next_room.roomScene.instance()
+			if not current_room:
+				printerr("room not instanced")
+				break
 			# retry with the new room
 			if not current_room.consume_rss_item(rssItem):
 				printerr("newly assigned room can't receive rssItem")
-				return
+				break
+			add_child(current_room)
+	print("all rooms assigned, player can now move")
+	$Player.can_move = true
 
 func _ready():
+	$Player.can_move = false
 	$HTTPRequest.connect("request_completed", self, "rss_loaded")
 	$HTTPRequest.request(get_rss_url(username, boardname))
 

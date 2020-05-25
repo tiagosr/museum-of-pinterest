@@ -59,11 +59,11 @@ func make_and_assign_rooms(rssItems:Array) -> void:
 			if not current_room:
 				printerr("room not instanced")
 				break
+			add_child(current_room)
 			# retry with the new room
 			if not current_room.consume_rss_item(rssItem):
 				printerr("newly assigned room can't receive rssItem")
 				break
-			add_child(current_room)
 	print("all rooms assigned, player can now move")
 	$Player.can_move = true
 

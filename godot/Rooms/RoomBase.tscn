@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Rooms/dark_ground.tres" type="Material" id=1]
 [ext_resource path="res://Frames/BasicFrame.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Room.gd" type="Script" id=3]
 [ext_resource path="res://Rooms/white_wall.tres" type="Material" id=4]
+[ext_resource path="res://Scripts/Door.gd" type="Script" id=5]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -120,6 +121,13 @@ transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 9.83, 0, 
 transform = Transform( 1, 0, 0, 0, 0.405285, 0.91419, 0, -0.91419, 0.405285, 0, 4.88921, 0.969901 )
 light_color = Color( 0.952941, 0.941176, 0.768627, 1 )
 shadow_enabled = true
+
+[node name="DoorS" type="Spatial" parent="."]
+transform = Transform( 2, 0, 0, 0, 3.5, 0, 0, 0, 0.999999, 7, 3, -9.99999 )
+
+[node name="DoorE" type="Spatial" parent="."]
+transform = Transform( 1.9998, 0, 0, 0, 3.498, 0, 0, 0, 1.9998, -10, 3, 7 )
+script = ExtResource( 5 )
 
 [node name="CSGBox" type="CSGBox" parent="."]
 transform = Transform( 10, 0, 0, 0, 5, 0, 0, 0, 10, 0, 5, 0 )

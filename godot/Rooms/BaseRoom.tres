@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource( 1 )
 roomScene = ExtResource( 2 )
-dimensions = Vector3( 10, 10, 5 )
+dimensions = Vector3( 20, 20, 5 )
 offset = Vector3( 0, 0, 0 )
-doors = [  ]
+doors = [ Vector3( 7, 3, -10 ), Vector3( -10, 3, 7 ) ]
+doorDirections = [  ]

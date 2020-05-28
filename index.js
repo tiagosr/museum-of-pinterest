@@ -3,7 +3,6 @@ const path = require("path");
 const http = require("http");
 const https = require("https");
 const fs = require("fs");
-const proxy = require("express-http-proxy");
 
 const port = process.env.PORT || 3001;
 

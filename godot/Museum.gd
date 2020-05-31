@@ -8,6 +8,7 @@ var rssItems:Array = []
 var rooms:Array = []
 var thread:Thread = Thread.new()
 
+onready var player:MuseumVisitor = $Player
 export var username:String = "tiagosr"
 export var boardname:String = "light-wave"
 
@@ -64,11 +65,46 @@ func make_and_assign_rooms(rssItems:Array) -> void:
 			if not current_room.consume_rss_item(rssItem):
 				printerr("newly assigned room can't receive rssItem")
 				break
-	print("all rooms assigned, player can now move")
-	$Player.can_move = true
-
-func _ready():
-	$Player.can_move = false
+	museum_entered()
+	
+func museum_entered():
+	$TitlePanel.visible = false
+	player.can_move = true
+	
+func parse_board_url(url:String) -> bool:
+	var pos = url.find_last("pinterest.com/")
+	if pos < 0:
+		return false
+	var sub:String = url.substr(pos + 14)
+	if sub.length() == 0:
+		return false
+	var pieces:PoolStringArray = sub.split("/", false)
+	if pieces.size() != 2:
+		return false
+	username = pieces[0]
+	boardname = pieces[1]
+	return true
+	
+func load_board(user:String, board:String):
 	$HTTPRequest.connect("request_completed", self, "rss_loaded")
 	$HTTPRequest.request(get_rss_url(username, boardname))
+
+func failed_to_enter_museum(reason:String):
+	$TitlePanel/Grid/EnterMuseum.disabled = false
+	$TitlePanel/Grid/Address.editable = true
+	$TitlePanel/Grid/Notice.text = reason
+	
+func try_enter_museum():
+	$TitlePanel/Grid/EnterMuseum.disabled = true
+	$TitlePanel/Grid/Address.editable = false
+	$TitlePanel/Grid/Notice.text = ""
+	if parse_board_url($TitlePanel/Grid/Address.text):
+		load_board(username, boardname)
+	else:
+		failed_to_enter_museum("not a valid Pinterest board address!")
+
+func _ready():
+	player.can_move = false
+	$TitlePanel/Grid/EnterMuseum.connect("pressed", self, "try_enter_museum")
+	
 
